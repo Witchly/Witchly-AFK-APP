@@ -45,7 +45,13 @@ export function login(cb: (status: 'linkOpened' | 'failed' | 'success', id?: str
 
 export async function getUserInfo(): Promise<{
     username: string,
-    coins: number
+    coins: number,
+    afkAppCoinsPerMin: number,
+    recentEarnings: {
+        userId: string;
+        coins: number;
+        time: number;
+    }[]
 }> {
     const token = getData().token;
     if (!token) throw new Error('The token is not saved in the data.');
