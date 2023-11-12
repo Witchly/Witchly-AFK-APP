@@ -1,6 +1,6 @@
 {
     "name": "witchly-afk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "out/bundle.js",
     "author": "Witchly",
     "description": "Witchly AFK app",
