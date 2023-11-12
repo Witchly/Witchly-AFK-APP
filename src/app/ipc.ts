@@ -1,5 +1,5 @@
 import { ipcMain } from "electron";
-import { WitchlyDesktopInstance } from "..";
+import { WitchlyDesktopInstance, assetsFolder } from "..";
 import { getUserInfo, login } from "./login";
 import path from "path";
 import { getData, setData } from "../utils/data";
@@ -11,7 +11,7 @@ export function loadIpcHandlers(i: WitchlyDesktopInstance) {
                 i.window.webContents.send('loginAvailable');
             }, 2500)
             else if (status === 'success') {
-                i.window.loadFile(path.join(__dirname, '../../assets/pages/main.html'))
+                i.window.loadFile(path.join(assetsFolder, './pages/main.html'));
                 i.loadSdk()
                 i.sdk?.setAppUserId(userId!);
             }
@@ -20,7 +20,7 @@ export function loadIpcHandlers(i: WitchlyDesktopInstance) {
     })
 
     ipcMain.on('logout', () => {
-        i.window.loadFile(path.join(__dirname, '../../assets/pages/login.html'));
+        i.window.loadFile(path.join(assetsFolder, './pages/login.html'));
         setData({
             userId: undefined,
             token: undefined,

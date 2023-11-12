@@ -12,8 +12,8 @@ module.exports = {
     externals: {
         'electron': 'require("electron")',
         // Ignore WS trying to use modules that don't exist for different environments
-        'bufferutil': 'undefined',
-        'utf-8-validate': 'undefined'
+        'bufferutil': 'require("bufferutil")',
+        'utf-8-validate': 'require("utf-8-validate")',
     },
     optimization: {
         minimize: true,
@@ -27,5 +27,5 @@ module.exports = {
                 },
             }),
         ],
-    },
+    }
 };

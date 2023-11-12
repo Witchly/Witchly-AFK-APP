@@ -7,8 +7,12 @@ import { getData, hasConsented, setConsented } from "./utils/data";
 import createWindow from "./window";
 import { loadIpcHandlers } from "./app/ipc";
 import { getConsent } from "./consent";
+import path from "path";
 
 export const SONIC_SDK_APP_ID = '82cde2c0-f4d6-478b-8ed6-34e4e5007b94';
+
+// Finding assets folder so that whether the code is bundled or not does not affect path to assets folder
+export const assetsFolder = path.join(__dirname, "../assets")
 
 // Only one instance can run at once
 if (!app.requestSingleInstanceLock()) app.quit();
