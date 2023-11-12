@@ -40,7 +40,9 @@
             "!tsconfig.json",
             "!webpack.config.js",
             "!out",
-            "out/bundle.js"
+            "out/bundle.js",
+            "out/app/preload.js",
+            "assets"
         ]
     }
 }

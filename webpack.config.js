@@ -11,6 +11,9 @@ module.exports = {
     target: 'electron-main', // Build for Electron's main process
     externals: {
         'electron': 'require("electron")',
+        // Ignore WS trying to use modules that don't exist for different environments
+        'bufferutil': 'undefined',
+        'utf-8-validate': 'undefined'
     },
     optimization: {
         minimize: true,
