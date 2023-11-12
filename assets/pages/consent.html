@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: purple;
+            }
+
+            button {
+                border: none;
+                background-color: #2853e1;
+                font-size: 16px;
+                padding: 12px;
+                margin-left: 5px;
+                margin-right: 5px;
+                cursor: pointer;
+                text-decoration: none;
+                color: white;
+                min-width: 100px;
+            }
+            button:hover {
+                background-color: #12329c;
+            }
+            button.danger {
+                background-color: rgb(87, 87, 87);
+            }
+            button.danger:hover {
+                background-color: rgb(46, 46, 46);
+            }
+        </style>
+    </head>
+    <body>
+        <img width="80%" style="margin-left: 10%; border-color: rgb(230, 0, 230); border-style: solid; border-width: 2px;" src="../media/explanation.png">
+    
+        <p style="width: 80%; margin-left: 10%; font-size: 18px; text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+            The Witchly AFK app needs your permission to utilize your internet connection. Your connection will be used by businesses, data scientists, organisations and individuals for purposeses such as public web data extraction, price comparison, ad verification and more.
+            Your personal data will <strong>not</strong> be accessed.
+            <br /><br />
+            By clicking accept you allow the Witchly AFK app to make connections to the public web from your PC.
+        </p>
+
+        <div style="text-align: center;">
+            <button onclick="window.channel.send('accepted')">Accept</button>
+            <button class="danger" onclick="window.channel.send('declined')">Decline</button>
+        </div>
+    </body>
+</html>

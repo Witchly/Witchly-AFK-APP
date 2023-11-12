@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="../css/styles.css" rel="stylesheet">
+    <title>Witchly AFK App</title>
+    <script src="../js/login.js" defer></script>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 py-5">
+                <form>
+                  <div class="text-center">
+                    <br>
+                    <center>
+                      <h3>Login to Continue</h3>
+                      <br>
+                      <h5>What would you like to do?</h5>
+                    </center>
+                    <br>
+                    <a role="button" style="font-size: 18px;" class="btn btn-inverse-info" id="login-btn">Login with Discord</a>
+                    <br>
+                    <br>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+  </body>
+</html>

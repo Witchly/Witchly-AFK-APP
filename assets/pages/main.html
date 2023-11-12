@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/main.js" defer></script>
+    <title>Witchly AFK App</title>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-auto m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body">
+                            <form>
+                                <div class="text-center">
+                                    <br>
+                                    <center>
+                                        <h3>AFK Process Running</h3>
+                                        <h5>The app is now earning you coins. Leave it open on your computer to gain coins every minute.</h5> <br>
+                                        <div style="background-color: purple; border-radius: 5px; padding-top: 5px; padding-bottom: 5px;">
+                                            <h3>Info</h3>
+                                            <h5><strong>User:</strong> <span id="info-username">...</span></h5>
+                                            <h5><strong>Coins:</strong> <span id="info-coins">...</span></h5>
+                                        </div>
+                                    </center>
+                                    <br>
+                                    <a role="button" style="font-size: 18px; margin-bottom: 10px;" class="btn btn-inverse-info" id="logout-btn">Logout</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+{
+    "name": "witchly-afk",
+    "version": "1.0.0",
+    "main": "out/bundle.js",
+    "author": "Witchly",
+    "description": "Witchly AFK app",
+    "devDependencies": {
+        "@types/auto-launch": "^5.0.2",
+        "@types/node-fetch": "^2.6.2",
+        "@types/ws": "^8.5.9",
+        "electron": "^22.0.0",
+        "electron-builder": "^24.6.3",
+        "typescript": "^4.9.4",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "auto-launch": "^5.0.5",
+        "dotenv": "^16.3.1",
+        "electron-updater": "^5.3.0",
+        "node-downloader-helper": "^2.1.6",
+        "node-fetch": "^2.7.0",
+        "ws": "^8.14.2"
+    },
+    "scripts": {
+        "start": "tsc && electron ./out/index.js",
+        "build": "tsc && webpack --mode production && electron-builder"
+    },
+    "build": {
+        "publish": [
+            {
+                "provider": "generic",
+                "url": "https://pondwader.xyz/static/witchly-afk"
+            }
+        ],
+        "appId": "com.witchly.desktop",
+        "productName": "Witchly AFK App",
+        "files": [
+            "!src",
+            "!tsconfig.json",
+            "!webpack.config.js",
+            "!out",
+            "out/bundle.js"
+        ]
+    }
+}
