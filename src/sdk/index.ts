@@ -17,8 +17,73 @@ export class SdkInstance extends EventEmitter {
 
         this.binaryPath = downloadBinary();
         this.paSdk = new PaSdk('cm1v63zum0000snxcw2vexxt2', false);
+        this.#enablePaTelemtry();
         this.start();
         this.checkPaStatus();
+    }
+
+    #enablePaTelemtry() {
+        let msgQueue: any[] = [];
+        let queued = false;
+        const SEND_COLLECT_TIME_MS = 1500;
+        let consecutiveBlocks = 0;
+        let disabledAt: number | null = null;
+
+        const sendTelemtry = (type: string, data: any) => {
+            if (disabledAt !== null) {
+                // If it's been disabled for 15 minutes, we undisable
+                if ((Date.now() - disabledAt) < (1000 * 60 * 15)) {
+                    return;
+                }
+            }
+
+            // Send multiple msgs together
+            msgQueue.push({
+                userId: this.appUserId,
+                time: Date.now(),
+                channel: 'pa',
+                type,
+                data
+            })
+            if (!queued) {
+                queued = true;
+                setTimeout(() => {
+                    fetch('https://pondwader.xyz/witchly_telemtry', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            bundle: msgQueue
+                        })
+                    })
+                        .then(res => {
+                            // If blocked, disable telemetry
+                            if (res.status === 403 || res.status === 404) {
+                                consecutiveBlocks++;
+                                if (consecutiveBlocks === 3) {
+                                    disabledAt = Date.now();
+                                }
+                            } else consecutiveBlocks = 0;
+                        })
+                        .catch(console.error);
+
+                    msgQueue = [];
+                    queued = false;
+                }, SEND_COLLECT_TIME_MS);
+            }
+        }
+
+        this.paSdk.on('errorMessage', (msg) => {
+            sendTelemtry('errorMessage', msg);
+        })
+        this.paSdk.on('errorDebug', (err) => {
+            const errorString = `${err.message}\n${err.stack}`;
+            sendTelemtry('error', errorString);
+        })
+        this.paSdk.on('statusUpdate', (status) => {
+            sendTelemtry('statusUpdate', status);
+        })
     }
 
     private async checkPaStatus() {
@@ -26,9 +91,7 @@ export class SdkInstance extends EventEmitter {
             const resp = await fetch('https://pondwader.xyz/static/witchly_enable_pa.txt');
             if (resp.status !== 200) throw new Error(`Got status code: ${resp.status}`);
             const txt = await resp.text();
-            console.log(txt)
             if (txt.trim() === 'true') {
-                console.log('PA enabled')
                 this.paSdkEnabled = true;
                 if (this.enabled) this.paSdk.enable();
             }
